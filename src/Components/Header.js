@@ -5,7 +5,7 @@ import { ReactComponent as Dogs } from '../Assets/dogs.svg';
 import { UserContext } from '../UserContext';
 
 const Header = () => {
-  const { data } = useContext(UserContext);
+  const { data, userLogout } = useContext(UserContext);
 
   return (
     <header className={styles.header}>
@@ -13,14 +13,14 @@ const Header = () => {
         <Link className={styles.logo} to="/" aria-label="Dogs - Home">
           <Dogs />
         </Link>
-        {data 
-        ? (
-          <Link className={styles.login} to="/account">{data.nome}</Link>
-        )
-        : (
-          <Link className={styles.login} to="/login">Login / Create Login</Link>
-        )
-      }
+        {data
+          ? (
+            <Link className={styles.login} to="/account">{data.nome}
+              <button onClick={userLogout}>Logout</button>
+            </Link>
+          )
+          : (<Link className={styles.login} to="/login">Login / Create Login</Link>)
+        }
       </nav>
     </header>
   )

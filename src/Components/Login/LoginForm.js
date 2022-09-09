@@ -9,7 +9,7 @@ const LoginForm = () => {
   const username = useForm();
   const password = useForm();
 
-  const { userLogin } = useContext(UserContext);
+  const { userLogin, error, loading } = useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -25,7 +25,8 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit}>
         <Input label="User" type="text" id="user" {...username} />
         <Input label="Password" type="password" id="password" {...password} />
-        <Button>Login</Button>
+        {loading ? (<Button disabled>Loading...</Button>) : (<Button>Login</Button>)}
+        { error && <p>{error}</p>}
       </form>
       <Link to="/login/create">Create Account</Link>
     </div>
