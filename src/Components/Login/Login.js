@@ -8,19 +8,21 @@ import { UserContext } from '../../UserContext';
 import styles from './Login.module.css';
 
 const Login = () => {
-  const {isLoggedIn} = useContext(UserContext);
+  const { isLoggedIn } = useContext(UserContext);
 
   if (isLoggedIn) return <Navigate to="/account" />
 
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="create" element={<LoginCreate />} />
-        <Route path="passwordlost" element={<LoginPasswordLost />}/>
-        <Route path="passwordreset" element={<LoginPasswordReset />}/>
-      </Routes>
-    </div>
+    <section className={styles.login}>
+      <div className={styles.forms}>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="create" element={<LoginCreate />} />
+          <Route path="passwordlost" element={<LoginPasswordLost />} />
+          <Route path="passwordreset" element={<LoginPasswordReset />} />
+        </Routes>
+      </div>
+    </section>
   )
 }
 
