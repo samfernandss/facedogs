@@ -16,7 +16,7 @@ export const UserStorage = (props) => {
     setError(null);
     setLoading(false);
     setIsLoggedIn(false);
-    window.localStorage.removeItem('token');
+    localStorage.removeItem('token');
     navigate('/login');
   }, [navigate])
 
@@ -36,7 +36,7 @@ export const UserStorage = (props) => {
       const tokenResponse = await fetch(url, options);
       if (!tokenResponse.ok) throw new Error('Error: User or password is wrong. Please try again.');
       const { token } = await tokenResponse.json();
-      window.localStorage.setItem('token', token);
+      localStorage.setItem('token', token);
       await getUser(token);
       navigate('/account');
     } catch (err) {
@@ -49,7 +49,7 @@ export const UserStorage = (props) => {
 
   useEffect(() => {
     async function autoLogin() {
-      const token = window.localStorage.getItem('token');
+      const token = localStorage.getItem('token');
       if (token) {
         try {
           setError(null);
@@ -63,6 +63,8 @@ export const UserStorage = (props) => {
         } finally {
           setLoading(false);
         }
+      } else {
+        setIsLoggedIn(false);
       }
     }
     autoLogin();
