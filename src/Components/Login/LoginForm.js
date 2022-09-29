@@ -31,7 +31,7 @@ const LoginForm = () => {
         {loading ? (<Button disabled>Loading...</Button>) : (<Button>Login</Button>)}
         <Error error={error} />
       </form>
-      <Link className={styles.perdeu} to="/login/resetPassword">Did you forget the password?</Link>
+      <Link className={styles.perdeu} to="/login/passwordlost">Did you forget the password?</Link>
       <div className={styles.cadastro}>
         <h2 className={styles.subtitle}>Create Your Own Account</h2>
         <p>Join our community</p>
